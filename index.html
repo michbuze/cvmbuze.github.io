@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Michel BUZE - Ingénieur Logiciel Expert</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+        :root {
+            --page-bg-color: #e0e0e0;
+            --cv-bg-color: #ffffff;
+            --main-color: #0d47a1;
+            --secondary-color: #f5f5ff;
+            --text-color: #333;
+            --light-text-color: #666;
+            --icon-contact-color: #555;
+            --bubble-bg-color: #cfd8dc;
+            --border-color: #b0bec5;
+            --timeline-color: #e0e0e0;
+            --shadow-color: rgba(0, 0, 0, 0.2);
+            --btn-hover-main: #002171;
+            --page-width: 210mm;
+            --page-height: 297mm;
+        }
+
+        body[data-theme="dark"] {
+            --page-bg-color: #121212;
+            --cv-bg-color: #1e1e1e;
+            --main-color: #bb86fc;
+            --secondary-color: #2c2c2c;
+            --text-color: #e0e0e0;
+            --light-text-color: #999;
+            --icon-contact-color: #999;
+            --bubble-bg-color: #373737;
+            --border-color: #444;
+            --timeline-color: #444;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            --btn-hover-main: #a35ff9;
+        }
+        
+        body[data-theme="dark"] .skills-category {
+             border: 1px solid var(--border-color);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.4;
+            color: var(--text-color);
+            background-color: var(--page-bg-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            width: 100%;
+            height: auto;
+            background: var(--cv-bg-color);
+            margin: 0 auto;
+            transition: background-color 0.3s;
+        }
+
+        .left-column { padding: 15px 15px 15px 35px; }
+        .right-column { padding: 5px 10px 15px; background-color: var(--secondary-color); transition: background-color 0.3s; }
+        
+        @media (max-width: 800px) {
+            .right-column { grid-row: 1; }
+        }
+
+        .right-header { margin-bottom: 20px; }
+        .right-header h1 {
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--main-color);
+            margin-bottom: -3px;
+			margin-top: -3px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .contact-info { list-style: none; padding: 0; margin-top: 0px; }
+        .contact-info li { display: flex; align-items: center; margin-bottom: 0px; font-size: 14px; font-weight: 500; }
+        .contact-info a { display: flex; align-items: center; text-decoration: none; color: var(--text-color); transition: color 0.2s; }
+        .contact-info a:hover { color: var(--main-color); }
+        .contact-info .icon { width: 24px; height: 24px; min-width: 24px; margin-right: 10px; fill: var(--icon-contact-color); transition: fill 0.3s; }
+
+        .section { margin-bottom: 12px; }
+        .section-title {
+            font-size: 15px; font-weight: 700; color: var(--main-color); border-bottom: 2px solid var(--main-color);
+            padding-bottom:2px; margin-bottom: 12px; display: flex; align-items: center; text-transform: uppercase;
+            transition: color 0.3s, border-color 0.3s;
+        }
+        .section-title .icon { width: 18px; height: 18px; margin-right: 8px; fill: var(--main-color); transition: fill 0.3s; }
+        
+        .profile-text { font-size: 13.5px; text-align: justify; font-weight: bold; }
+        .profile-desktop { display: none; }
+        .profile-mobile { display: block; }
+
+        .job, .internship { margin-bottom: 9px; position: relative; }
+        .job-timeline:before, .internship-timeline:before {
+            content: ''; position: absolute; left: -21px; top: 5px; bottom: -12px; width: 2px;
+            background: var(--timeline-color); transition: background-color 0.3s;
+        }
+        .job:last-child .job-timeline:before, .internship:last-child .internship-timeline:before { display: none; }
+        
+        .job-header, .internship-header { position: relative; display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+        .job-header::before, .internship-header::before {
+            content: ''; position: absolute; left: -25px; top: 5px; width: 8px; height: 8px; border-radius: 50%;
+            background: var(--main-color); border: 2px solid var(--cv-bg-color); z-index: 1;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .job-title { font-size: 15px; font-weight: 700; color: var(--main-color); transition: color 0.2s; }
+        .job-title .company-name-main { font-size: 14px; color: #607D8B; font-weight: 400; }
+        body[data-theme="dark"] .job-title .company-name-main { color: var(--light-text-color); }
+        .job-title:hover { color: #002171; }
+        body[data-theme="dark"] .job-title:hover { color: var(--btn-hover-main); }
+        
+        .internship-title {
+            font-size: 12.5px;
+            font-weight: normal;
+            color: var(--text-color);
+        }
+
+        .job-company-date, .duration, .mission-date, .job-env, .job-env-inline { color: var(--light-text-color); transition: color 0.3s; }
+        .date-container { width: 120px; text-align: left; padding-left: 10px; flex-shrink: 0; }
+        .job-company-date { font-size: 11px; white-space: nowrap; }
+        .duration { font-size: 10.5px; color: #999; }
+        
+        .mission-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px; flex-wrap: nowrap; }
+        .mission-title { font-weight: 700; font-size: 13px; transition: color 0.2s; flex-grow: 1; }
+        .mission-title:hover { color: var(--main-color); }
+        .company-name { font-weight: 500; color: #607D8B; }
+        body[data-theme="dark"] .company-name { color: var(--light-text-color); }
+        .mission-date { font-size: 11px; font-weight: 400; white-space: nowrap; }
+
+        .job-description, .internship-description { font-size: 12.5px; padding-left: 0; }
+        .job-description ul { padding-left: 0; list-style-type: none; }
+        .job-description li { margin-bottom: 8px; }
+        
+        .mission-details, .mission-full-details { font-size: 12.5px; padding-left: 5px; }
+        .job-env { font-size: 12px; line-height: 1.4; margin-top: 4px; border-left: 2px solid var(--timeline-color); transition: border-color 0.3s; }
+        .job-env-inline { font-size: 12px; padding-left: 4px; }
+        
+        .skills-category { border: 1px solid var(--border-color); border-radius: 5px; padding: 6px 8px; margin-bottom: 4px; transition: border-color 0.3s; }
+        .skills-category h4 { font-size: 13px; font-weight: 500; margin-bottom: 4px; }
+        .skills-container { display: flex; flex-wrap: wrap; gap: 5px 5px; }
+        .skill-bubble {
+            display: inline-block; background-color: var(--bubble-bg-color); color: var(--text-color);
+            padding: 1px 6px; border-radius: 15px; font-size: 11.5px; font-weight: 500;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .skill-bubble:hover { background-color: var(--main-color); color: white; }
+		
+        .detail {
+            font-size: 0.9em;
+            font-weight: 400;
+            color: var(--light-text-color);
+        }
+
+        .education-item { font-size: 12.5px; margin-bottom: 8px; }
+        .education-item strong { font-weight: 500; }
+        .education-parenthesis { font-size: 0.9em; font-weight: 400; }
+
+        .button-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; padding: 20px 10px; width: 100%; max-width: var(--page-width); margin: 15px auto; }
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 16px; border-radius: 20px;
+            border: none; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 500; text-decoration: none; color: white;
+            background-color: var(--main-color); cursor: pointer; position: relative; overflow: hidden;
+            transition: background-color 0.3s, box-shadow 0.3s; box-shadow: 0 2px 5px var(--shadow-color);
+        }
+        .btn:hover { background-color: var(--btn-hover-main); box-shadow: 0 4px 10px var(--shadow-color); }
+        .btn .icon { width: 20px; height: 20px; fill: white; z-index: 2; }
+        .btn .btn-text { color: white; z-index: 2; }
+
+        .btn:hover .print-icon .sheet { animation: print-sheet 0.5s ease-out forwards; }
+        .btn:hover .download-icon .arrow { animation: download-arrow 0.6s ease-in-out infinite; }
+        
+        .btn-secondary { background-color: #1a73e8; }
+        .btn-secondary:hover { background-color: #1558b3; }
+        .btn-tertiary { background-color: #d93025; }
+        .btn-tertiary:hover { background-color: #a52714; }
+
+        /* EFFET RIPPLE */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple-effect 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-effect { to { transform: scale(4); opacity: 0; } }
+        @keyframes print-sheet { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+        @keyframes download-arrow { 0% { transform: translateY(-4px); } 50% { transform: translateY(4px); } 100% { transform: translateY(-4px); } }
+        
+        .skill-bubble a, .company-name-main a {
+            color: inherit;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .company-name-main a:hover {
+            text-decoration: underline;
+        }
+        .job-env a, .job-env-inline a, .internship-title a, .company-name a {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px dotted;
+            transition: color 0.2s, border-bottom-color 0.2s;
+        }
+        .job-env a:hover, .job-env-inline a:hover, .internship-title a:hover, .company-name a:hover {
+            color: var(--main-color);
+            border-bottom-color: var(--main-color);
+        }
+        
+        @media (max-width: 800px) {
+            .job-header, .internship-header, .mission-header { align-items: flex-start; }
+            .date-container { width: 110px; }
+        }
+
+        @media (min-width: 801px) {
+            body { padding: 15px 0; }
+            .container {
+                grid-template-columns: 2.1fr 0.9fr; width: var(--page-width); height: var(--page-height);
+                margin: 15px auto; box-shadow: 0 0 15px var(--shadow-color); overflow: hidden;
+            }
+            .right-column { grid-row: auto; }
+            .profile-mobile { display: none; }
+            .profile-desktop { display: block; }
+            .button-container {
+                position: fixed; top: 50%; right: 2vw; transform: translateY(-50%);
+                flex-direction: column; width: auto; padding: 0; margin: 0; z-index: 100;
+            }
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { 
+                box-shadow: none; width: var(--page-width); height: var(--page-height);
+                grid-template-columns: 2.1fr 0.9fr; overflow: hidden; margin: 0;
+            }
+            .right-column { grid-row: auto; }
+            .profile-mobile { display: none; }
+            .profile-desktop { display: block; }
+            .hide-on-print { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-column">
+            <section class="section profile-desktop">
+                 <h3 class="section-title"><svg class="icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>Profil</h3>
+                 <p class="profile-text">Ingénieur logiciel avec plus de 25 ans d'expertise en conception et développement <span style="font-size: 0.9em;">(fullstack Java/web, ...)</span>, webservices et bases de données, en environnements agiles.</p>
+            </section>
+
+            <section class="section">
+                <h3 class="section-title"><svg class="icon" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>Expérience Professionnelle</h3>
+                <div class="job">
+                    <div class="job-timeline"></div>
+                    <div class="job-header">
+                        <div class="job-title">Ingénieur Logiciel / Tech Lead, <span class="company-name-main"><a href="https://www.randstaddigital.fr/fr/propos/" target="_blank">Randstad Digital / Ausy</a></span></div>
+                        <div class="date-container"><div class="job-company-date">2020 - Présent <span class="duration">(5 ans)</span></div></div>
+                    </div>
+                    <div class="job-description">
+                        <ul>
+                            <li>
+                                <div class="mission-header">
+                                    <span class="mission-title">Techlead Fullstack<span class="company-name">. Interne Randstad Digital</span></span>
+                                    <div class="date-container"><span class="mission-date">2025 - Présent <span class="duration">(6 mois)</span></span></div>
+                                </div>								
+								<div class="mission-details">Conception/dév. en équipe d'outils RH IA et digitalisation d'un jeu de société </div>
+                                <div class="job-env"><a href="javascript:copilot('API Google Gemini AI')">API Google Gemini AI</a>, <a href="javascript:copilot('node.js')">node.js</a>, <a href="javascript:copilot('TypeScript')">TypeScript</a>, <a href="javascript:copilot('React')">React</a>, <a href="javascript:copilot('Java')">Java</a>, <a href="javascript:copilot('Spring boot')">Spring boot</a>, <a href="javascript:copilot('Hibernate')">Hibernate</a>, <a href="javascript:copilot('Mockito')">Mockito</a>, <a href="javascript:copilot('Junit')">Junit</a>, <a href="javascript:copilot('Docker')">Docker</a>, <a href="javascript:copilot('GitLab')">GitLab</a>, <a href="javascript:copilot('Maven')">Maven</a>, <a href="javascript:copilot('PostgreSQL')">PostgreSQL</a>, <a href="javascript:copilot('CouchDB')">CouchDB</a>, <a href="javascript:copilot('SonarQube')">SonarQube</a>, <a href="javascript:copilot('VSCode')">VSCode</a>, <a href="javascript:copilot('TailwindCSS')">TailwindCSS</a>, <a href="javascript:copilot('DaisyUI')">DaisyUI</a>.</div>
+                            </li>
+                            <li>
+                                <div class="mission-header">
+                                    <span class="mission-title">Conception/dév. outil d’attestation d'avions civils<span class="company-name">. Airbus Atlantic</span></span>
+                                    <div class="date-container"><span class="mission-date">2024 - 2025 <span class="duration">(1 an)</span></span></div>
+                                </div>
+                                <div class="job-env"><a href="javascript:copilot('VBA')">VBA</a>, <a href="javascript:copilot('Excel')">Excel</a>, <a href="javascript:copilot('Google Workspace')">Google Workspace</a>, <a href="javascript:copilot('API SAP')">API SAP</a>, <a href="javascript:copilot('PLM Windchill')">PLM Windchill</a>.</div>
+                            </li>
+                            <li>
+                                <div class="mission-header">
+                                    <span class="mission-title">Conception/dév. Java/web<span class="company-name">. <a href="https://www.agirc-arrco.fr/nous-connaitre/qui-sommes-nous/notre-histoire/les-chiffres-cles/" target="_blank">Agirc-Arrco</a> <span class="detail">(retraite complémentaire)</span></span></span>
+                                    <div class="date-container"><span class="mission-date">2022 - 2024 <span class="duration">(2 ans)</span></span></div>
+                                </div>
+                                <div class="mission-details">Tech lead fullstack et Scrum Master sur le système de gestion des actifs. <span class="detail">(GED, ...)</span></div>
+                                <div class="job-env"><a href="javascript:copilot('Java')">Java</a>, <a href="javascript:copilot('Vaadin')">Vaadin</a>, <a href="javascript:copilot('Webservices Rest/Soap')">Webservices Rest/Soap</a>, <a href="javascript:copilot('Spring/Batch')">Spring/Batch</a>, <a href="javascript:copilot('Hibernate')">Hibernate</a>, <a href="javascript:copilot('Postgres')">Postgres</a>, <a href="javascript:copilot('Junit/Mockito')">Junit/Mockito</a>, <a href="javascript:copilot('Jenkins')">Jenkins</a>, <a href="javascript:copilot('Sonar')">Sonar</a>, <a href="javascript:copilot('Jira')">Jira</a>, <a href="javascript:copilot('Svn/git')">Svn/git</a>, <a href="javascript:copilot('Tomcat 9')">Tomcat 9</a>.</div>
+                            </li>
+                            <li>
+                                <div class="mission-header">
+                                    <span class="mission-title">Conception/dév. Java/web<span class="company-name">. <a href="https://assistancepro.orange.fr/" target="_blank">Orange Business Services</a></span> <span class="detail">(OBS)</span></span>
+                                    <div class="date-container"><span class="mission-date">2020 - 2022 <span class="duration">(2 ans)</span></span></div>
+                                </div>
+                                <div class="mission-details">
+								Service client <span class="detail">(Orange pro 3901)</span> : Serveur Vocal Interactif <span class="detail">(SVI)</span>. 
+								Voicebot <span class="detail">(chatbot vocal)</span></div>
+                                <div class="job-env"><a href="javascript:copilot('Java EE')">Java EE</a> (<a href="javascript:copilot('Spring Boot')">Spring Boot</a>, <a href="javascript:copilot('Hibernate')">Hibernate</a>), <a href="javascript:copilot('Maven')">Maven</a>, <a href="javascript:copilot('IntelliJ')">IntelliJ</a>, <a href="javascript:copilot('Git')">Git</a>, <a href="javascript:copilot('MySQL/MariaDB')">MySQL/MariaDB</a>, <a href="javascript:copilot('Tomcat')">Tomcat</a>, <a href="javascript:copilot('Webservices Rest')">Webservices Rest</a>, <a href="javascript:copilot('HTML/CSS')">HTML/CSS</a>, <a href="javascript:copilot('Javascript')">Javascript</a> (<a href="javascript:copilot('Node.js')">Node.js</a>, <a href="javascript:copilot('Angular')">Angular</a>, <a href="javascript:copilot('jQuery')">jQuery</a>), Outils de test (<a href="javascript:copilot('Karma')">Karma</a>, <a href="javascript:copilot('Selenium')">Selenium</a>, <a href="javascript:copilot('Junit')">Junit</a>, <a href="javascript:copilot('FitNesse')">FitNesse</a>), <a href="javascript:copilot('Jenkins')">Jenkins</a>, <a href="javascript:copilot('Sonar')">Sonar</a>, <a href="javascript:copilot('Jira')">Jira</a>. <a href="javascript:copilot('Scrum (agile)')">Scrum (agile)</a>, <a href="javascript:copilot('Linux')">Linux</a>/VM <a href="javascript:copilot('Windows 10')">Windows 10</a></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="job">
+                    <div class="job-timeline"></div>
+                    <div class="job-header">
+                        <div class="job-title">Ingénieur Logiciel, <span class="company-name-main"><a href="https://www.capgemini.com/fr-fr/notre-groupe/" target="_blank">Cap Gemini DEMS / Sogeti High Tech</a></span></div>
+                        <div class="date-container"><div class="job-company-date">2001 - 2019 <span class="duration">(18 ans)</span></div></div>
+                    </div>
+                    <div class="job-description">
+                         <ul>
+                            <li>
+                                <div class="mission-header">
+                                    <span class="mission-title">Dév. / maintenance : Système d’information<span class="company-name">. <a href="https://ariane.group/qui-sommes-nous/nos-sites/" target="_blank">Ariane Group</a></span></span>
+                                    <div class="date-container"><span class="mission-date">2015 - 2020 <span class="duration">(5 ans)</span></span></div>
+                                </div>
+								<div class="mission-details">Applications web de gestion d'outillages et droits accès SI, utilisées au niveau groupe</span>
+                                <div class="job-env"><a href="javascript:copilot('Java web')">Java web</a> (<a href="javascript:copilot('JSP')">JSP</a>, <a href="javascript:copilot('Struts')">Struts</a>, <a href="javascript:copilot('Apache Tomcat')">Apache Tomcat</a>, <a href="javascript:copilot('webservices Rest/Soap/CXF')">webservices Rest/Soap/CXF</a>), <a href="javascript:copilot('C#')">C#</a>, <a href="javascript:copilot('JIRA')">JIRA</a>, <a href="javascript:copilot('VBA')">VBA</a>, <a href="javascript:copilot('Access')">Access</a>.</div>
+                            </li>
+                             <li>
+                                <div class="mission-header">
+                                    <span class="mission-title">Conception et dév. Java : Simulateur de système drones<span class="company-name">. <a href="https://www.usinenouvelle.com/article/une-plate-forme-de-simulation-pour-les-drones.N1896607" target="_blank">AETOS</a></span></span>
+                                    <div class="date-container"><span class="mission-date">2013 - 2014 <span class="duration">(1 an)</span></span></div>
+                                </div>
+                                <div class="job-env"><a href="javascript:copilot('Java EE')">Java EE</a>, <a href="javascript:copilot('SWT')">SWT</a>, <a href="javascript:copilot('Android SDK')">Android SDK</a>, <a href="javascript:copilot('API Google Earth')">API Google Earth</a>, <a href="javascript:copilot('Java 3D (jMonkey)')">Java 3D (jMonkey)</a>, <a href="javascript:copilot('SVN')">SVN</a>, <a href="javascript:copilot('C++')">C++</a>.</div>
+                            </li>
+                             <li>
+                                <div class="mission-header">
+                                    <span class="mission-title">Codage des séquences de tests d'un engin balistique<span class="company-name">. <a href="https://ariane.group/qui-sommes-nous/nos-sites/" target="_blank">EADS</a></span></span>
+                                    <div class="date-container"><span class="mission-date">2010 - 2012 <span class="duration">(2 ans)</span></span></div>
+                                </div>
+                                <div class="job-env"><a href="javascript:copilot('TestStand')">TestStand</a>, logiciel graphique Windows en <a href="javascript:copilot('C++')">C++</a>.</div>
+                            </li>
+                             <li>
+                                <div class="mission-header">
+                                    <span class="mission-title">Codage de tests unitaires et d'intégration de logiciels embarqués</span>
+                                    <div class="date-container"><span class="mission-date">2005 - 2009 <span class="duration">(4 ans)</span></span></div>
+                                </div>
+                                <div class="mission-details">Secteur industriel : Dassault, Turboméca, Sodern, Messier-Bugatti, Alstom; médical : Airox</div>
+                                <div class="job-env"><a href="javascript:copilot('RTRT (IBM Rational Test RealTime)')">RTRT (IBM Rational Test RealTime)</a>. <a href="javascript:copilot('C')">C</a>, <a href="javascript:copilot('Ada')">Ada</a>. <a href="javascript:copilot('Bugzilla')">Bugzilla</a>, <a href="javascript:copilot('Mantis')">Mantis</a>, <a href="javascript:copilot('DO-178B')">DO-178B</a>.</div>
+                            </li>
+                             <li>
+                                <div class="mission-header">
+                                    <span class="mission-title">Conception objet/dév. C : Système de visiocommunication</span>
+                                    <div class="date-container"><span class="mission-date">2004 - 2005 <span class="duration">(1 an)</span></span></div>
+                                </div>
+                                <div class="mission-full-details"><span class="company-name"><a href="https://www.thalesaleniaspace.com/fr/presentation" target="_blank">Thales Alenia Space</a>.</span> Satellite de défense.<span class="job-env-inline"><a href="javascript:copilot('C')">C</a>, <a href="javascript:copilot('webservices SOAP')">webservices SOAP</a>, <a href="javascript:copilot('Unix')">Unix</a> Temps Réel, <a href="javascript:copilot('XML')">XML</a>.</span></div>
+                            </li>
+                             <li>
+                                <div class="mission-header">
+                                    <span class="mission-title">Responsable outils : Gestion de configuration/test/compilation</span>
+                                    <div class="date-container"><span class="mission-date">2001 - 2003 <span class="duration">(2 ans)</span></span></div>
+                                </div>
+                                <div class="mission-full-details"><span class="company-name"><a href="https://omnirole-rafale.com/avionique/ihm/" target="_blank">Thales Avionics</a>.</span> Cockpit avion.<span class="job-env-inline"><a href="javascript:copilot('C')">C</a>, <a href="javascript:copilot('Ada')">Ada</a>, <a href="javascript:copilot('Unix')">Unix</a>, <a href="javascript:copilot('Rational ClearCase/ClearQuest')">Rational ClearCase/ClearQuest</a>.</span></div>
+                            </li>
+                         </ul>
+                    </div>
+                </div>
+                 <div class="job">
+                    <div class="job-timeline"></div>
+                    <div class="job-header">
+                        <div class="job-title">Ingénieur Logiciel, <span class="company-name-main"><a href="https://www.soprasteria.fr/nous-connaitre" target="_blank">Sopra</a></span></div>
+                        <div class="date-container"><div class="job-company-date">1997 - 2001 <span class="duration">(4 ans)</span></div></div>
+                    </div>
+                    <div class="job-description">
+                         <ul>
+                            <li>
+                                <div class="mission-header">
+                                    <span class="mission-title">Conception et dév. C/SQL<span class="company-name">. <a href="https://selectra.info/telecom/fournisseurs/orange/france-telecom" target="_blank">France Télécom</a></span></span>
+                                    <div class="date-container"><span class="mission-date">2000 - 2001 <span class="duration">(1 an)</span></span></div>
+                                </div>
+                                <div class="mission-full-details">Facturation client, batchs, serveurs parallèles.<span class="job-env-inline"><a href="javascript:copilot('C')">C</a>, <a href="javascript:copilot('PL/SQL')">PL/SQL</a>, tables partionnées <a href="javascript:copilot('Oracle')">Oracle</a>, <a href="javascript:copilot('Sybase')">Sybase</a></span></div>
+                            </li>
+                             <li>
+                                <div class="mission-header">
+                                    <span class="mission-title">Analyse et dév./maintenance<span class="company-name">. <a href="https://www.01net.com/actualites/jean-louis-rimbod-camif-en-vpc-la-culture-du-developpement-specifique-reste-preponderante-196099.html" target="_blank">Camif</a></span></span>
+                                    <div class="date-container"><span class="mission-date">1997 - 2000 <span class="duration">(3 ans)</span></span></div>
+                                </div>
+                                <div class="mission-full-details">Domaines financier (comptabilité, crédits...)/éditique.<span class="job-env-inline"><a href="javascript:copilot('L4G PowerHouse')">L4G PowerHouse</a>, <a href="javascript:copilot('Pascal')">Pascal</a>, <a href="javascript:copilot('HP3000')">HP3000</a></span></div>
+                            </li>
+                         </ul>
+                    </div>
+                </div>
+            </section>
+             <section class="section">
+                <h3 class="section-title"><svg class="icon" viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>Stages</h3>
+                <div class="internship">
+                    <div class="internship-timeline"></div>
+                    <div class="internship-header">
+                        <div class="job-title internship-title">
+                            <b><a href="https://omnirole-rafale.com/avionique/ihm/" target="_blank">Thales Avionics</a>.</b> Outil de tests de code embarqué. 
+							<span class="job-env-inline"><a href="javascript:copilot('C')">C</a> et <a href="javascript:copilot('Ada')">Ada</a>, <a href="javascript:copilot('Unix')">Unix</a></span>
+                        </div>
+                        <div class="date-container">
+                            <div class="job-company-date">1995 <span class="duration">(5 mois)</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="internship">
+                    <div class="internship-timeline"></div>
+                    <div class="internship-header">
+                        <div class="job-title internship-title">
+                            <b>Logiciels de Gestion.</b> <span class="detail">(gestion d'ESN, de patrimoine/impôts, de CV, suivi d'assistance)</span>
+							<span class="job-env-inline"><a href="javascript:copilot('Access')">Access</a>, <a href="javascript:copilot('SQL')">SQL</a>, <a href="javascript:copilot('Borland Paradox')">Borland Paradox</a>, <a href="javascript:copilot('Windev')">Windev</a>, <a href="javascript:copilot('dBase')">dBase</a></span>
+                        </div>
+                        <div class="date-container">
+                            <div class="job-company-date">1991 - 1994 <span class="duration">(4 * 2 mois)</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="internship">
+                    <div class="internship-timeline"></div>
+                    <div class="internship-header">
+                        <div class="job-title internship-title">
+                            <b><a href="https://www.amigafrance.com/forums/topic/adibou/" target="_blank">Adibou</a></b> <span class="detail">(fameux jeu éducatif)</span>. Analyse/développement <span class="detail">(Win/Mac/...)</span>
+                        </div>
+                        <div class="date-container">
+                            <div class="job-company-date">1992 <span class="duration">(6 mois)</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="right-column">
+            <header class="right-header">
+                <h1>Michel BUZE</h1>
+                <section class="section profile-mobile">
+                    <h3 class="section-title"><svg class="icon" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>Profil</h3>
+                    <p class="profile-text">Ingénieur logiciel avec plus de 25 ans d'expérience. Expert en conception et dév. Java/Web, webservices et bases de données, en environnements agiles.</p>
+                </section>
+                <ul class="contact-info">
+                    <li><a href="mailto:michel.buze@gmail.com" target="_blank"><svg class="icon" viewBox="0 0 24 24"><g transform="scale(0.75) translate(4, 4)"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></g></svg><span>michel.buze@gmail.com</span></a></li>
+                    <li><a href="tel:0625888109"><svg class="icon" viewBox="0 0 24 24"><g transform="scale(0.75) translate(4, 4)"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></g></svg><span>06 25 88 81 09</span></a></li>
+                    <li><a href="https://www.google.com/maps/dir/Rue René Coty,+33140+Villenave-d'Ornon/" target="_blank"><svg class="icon" viewBox="0 0 24 24"><g transform="scale(0.75) translate(4, 4)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></g></svg><span>Bordeaux (Villenave d'Ornon)</span></a></li>
+                    <li><a href="https://linkedin.com/in/michel-buze" target="_blank"><svg class="icon" viewBox="0 0 24 24"><g transform="scale(0.75) translate(4, 4)"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-3.06v8.34h3.06v-4.57c0-1.18.25-2.32 1.7-2.32c1.45 0 1.48 1.34 1.48 2.41v4.48zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.39 9.94v-8.34H5.5v8.34z"></path></g></svg><span>linkedin.com/in/michel-buze</span></a></li>
+                    <li><a href="https://tinyurl.com/cvmbuze" target="_blank"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1h-2v-2h2c.55 0 1-.45 1-1V7h1c.9 0 1.64-.59 1.9-1.39.54.63.9 1.41.9 2.39 0 2.21-1.44 4.1-3.44 4.83.33.47.54 1.06.54 1.67 0 .53-.13 1.02-.36 1.46z"/></svg><span>tinyurl.com/cvmbuze</span></a></li>
+                </ul>
+            </header>
+            
+            <section class="section">
+                <h3 class="section-title"><svg class="icon" viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>Compétences</h3>
+                <div class="skills-category"><h4>LANGAGES</h4><div class="skills-container"><span class="skill-bubble"><a href="javascript:copilot('Java')">Java</a></span><span class="skill-bubble"><a href="javascript:copilot('C/C++')">C/C++</a></span><span class="skill-bubble"><a href="javascript:copilot('C#')">C#</a></span><span class="skill-bubble"><a href="javascript:copilot('Javascript')">Javascript</a></span><span class="skill-bubble"><a href="javascript:copilot('Html/Css')">Html/Css</a></span><span class="skill-bubble"><a href="javascript:copilot('Sql')">Sql</a></span><span class="skill-bubble"><a href="javascript:copilot('Shell (bash)')">Shell <span class="detail">(bash)</span></a></span><span class="skill-bubble"><a href="javascript:copilot('VBA (Visual Basic)')">VBA <span class="detail">(Visual Basic)</span></a></span><span class="skill-bubble"><a href="javascript:copilot('Ada')">Ada</a></span><span class="skill-bubble"><a href="javascript:copilot('Python')">Python</a></span></div></div>
+                <div class="skills-category"><h4>FRAMEWORKS</h4><div class="skills-container"><span class="skill-bubble"><a href="javascript:copilot('Spring Boot')">Spring Boot</a></span><span class="skill-bubble"><a href="javascript:copilot('Struts2')">Struts2</a></span><span class="skill-bubble"><a href="javascript:copilot('Hibernate')">Hibernate</a></span><span class="skill-bubble"><a href="javascript:copilot('iBatis')">iBatis</a></span><span class="skill-bubble"><a href="javascript:copilot('Angular')">Angular</a></span><span class="skill-bubble"><a href="javascript:copilot('React')">React</a></span><span class="skill-bubble"><a href="javascript:copilot('Vaadin')">Vaadin</a></span></div></div>
+                <div class="skills-category"><h4>BASES DE DONNÉES</h4><div class="skills-container"><span class="skill-bubble"><a href="javascript:copilot('Oracle')">Oracle</a></span><span class="skill-bubble"><a href="javascript:copilot('Sybase')">Sybase</a></span><span class="skill-bubble"><a href="javascript:copilot('PostgreSQL')">PostgreSQL</a></span><span class="skill-bubble"><a href="javascript:copilot('MariaDB')">MariaDB</a></span><span class="skill-bubble"><a href="javascript:copilot('MySQL')">MySQL</a></span><span class="skill-bubble"><a href="javascript:copilot('MS Access')">MS Access</a></span></div></div>
+                <div class="skills-category"><h4>OUTILS / SERVEURS</h4><div class="skills-container"><span class="skill-bubble"><a href="javascript:copilot('Webservices (Rest/Soap/Cxf/Corba)')">Webservices <span class="detail">(Rest/Soap/Cxf/Corba)</span></a></span><span class="skill-bubble"><a href="javascript:copilot('Apache')">Apache</a></span><span class="skill-bubble"><a href="javascript:copilot('Tomcat')">Tomcat</a></span><span class="skill-bubble"><a href="javascript:copilot('Jboss')">Jboss</a></span><span class="skill-bubble"><a href="javascript:copilot('Eclipse')">Eclipse</a></span><span class="skill-bubble"><a href="javascript:copilot('IntelliJ')">IntelliJ</a></span><span class="skill-bubble"><a href="javascript:copilot('VSCode')">VSCode</a></span></div></div>
+                <div class="skills-category"><h4>GESTION DE CONFIGURATION</h4><div class="skills-container"><span class="skill-bubble"><a href="javascript:copilot('Git')">Git</a></span><span class="skill-bubble"><a href="javascript:copilot('SVN')">SVN</a></span><span class="skill-bubble"><a href="javascript:copilot('Rational ClearCase')">Rational ClearCase</a></span></div></div>
+                <div class="skills-category"><h4>MÉTHODOLOGIES</h4><div class="skills-container"><span class="skill-bubble"><a href="javascript:copilot('Méthodes agiles (Scrum, XP, …)')">Méthodes agiles <span class="detail">(Scrum, XP, …)</span></a></span><span class="skill-bubble"><a href="javascript:copilot('UML (Booch)')">UML <span class="detail">(Booch)</span></a></span><span class="skill-bubble"><a href="javascript:copilot('Merise')">Merise</a></span><span class="skill-bubble"><a href="javascript:copilot('Cycle en V')">Cycle en V</a></span></span></div></div>
+                <div class="skills-category"><h4>SYSTÈMES D’EXPLOITATION</h4><div class="skills-container"><span class="skill-bubble"><a href="javascript:copilot('Unix')">Unix</a></span><span class="skill-bubble"><a href="javascript:copilot('Linux')">Linux</a></span><span class="skill-bubble"><a href="javascript:copilot('Windows')">Windows</a></span><span class="skill-bubble"><a href="javascript:copilot('Windows CE')">Windows CE</a></span><span class="skill-bubble"><a href="javascript:copilot('Android SDK')">Android SDK</a></span></div></div>
+            </section>
+            
+            <section class="section">
+                <h3 class="section-title"><svg class="icon" viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>Formation Académique</h3>
+                <div class="education-item"><strong>DESS Génie Logiciel</strong> <span class="education-parenthesis">(Bac+5, 1995)</span></div>
+            </section>
+            
+            <section class="section">
+                <h3 class="section-title"><svg class="icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.11 0-2 .89-2 2v11c0 1.11.89 2 2 2h4v5l4-2 4 2v-5h4c1.11 0 2-.89 2-2V4c0-1.11-.89-2-2-2zm0 13H4v-2h16v2zm0-5H4V4h16v6z"/></svg>Formations internes</h3>
+                <div class="skills-container">
+                    <span class="skill-bubble">Gestion de projet, conduite de réunion</span>
+                    <span class="skill-bubble">Nouvelles technos <span class="detail">(web/client-serveur)</span></span>
+                    <span class="skill-bubble"><a href="javascript:copilot('Objet (conception, UML, UP, Corba)')">Objet <span class="detail">(conception, UML, UP, Corba)</span></a></span>
+                    <span class="skill-bubble">Méthodes</span>
+                    <span class="skill-bubble"><a href="javascript:copilot('Spring batch')">Spring batch</a></span>
+                    <span class="skill-bubble"><a href="javascript:copilot('Angular')">Angular</a></span>
+                </div>
+            </section>
+
+            <section class="section">
+                <h3 class="section-title"><svg class="icon" viewBox="0 0 24 24"><path d="M13 13v8h8v-8h-8zM3 21h8v-8H3v8zM3 3v8h8V3H3zm13.66-1.31L11 7.34 16.66 13l5.66-5.66-5.66-5.65z"/></svg>Autres</h3>
+                <div class="skills-container">
+					<span class="skill-bubble">Anglais</span>
+                    <span class="skill-bubble">Espagnol</span>					
+                    <span class="skill-bubble">Permis B</span>
+                    <span class="skill-bubble"><a href="javascript:copilot('Éditeur Wikipédia')">Éditeur Wikipédia</a></span>
+					<span class="skill-bubble">Webmaster</span>
+					<span class="skill-bubble"><a href="javascript:copilot('Rédacteur webmedia (Wordpress)')">Rédacteur Webmedia <span class="detail">(Wordpress)</span></a></span>					
+                </div>
+            </section>
+
+        </div>
+    </div>
+	
+    <div class="button-container hide-on-print">
+        
+        <button id="theme-toggle" class="btn" title="Changer le thème">
+            <svg id="sun-icon" class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M20 15.31L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+            <svg id="moon-icon" class="icon" style="display:none;" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36c-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+            <span class="btn-text">Mode clair/sombre</span>
+        </button>
+        <a href="#" onclick="window.print(); return false;" class="btn">
+            <svg class="icon print-icon" viewBox="0 0 24 24">
+                <g>
+                    <path class="printer-body" d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H9V2h6v2z"/>
+                    <path class="sheet" fill="#cfd8dc" d="M17 14H7v-4h10v4z"/>
+                </g>
+            </svg>
+            <span class="btn-text">Imprimer le CV</span>
+        </a>
+
+        <a href="http://buze.michel.chez.com/cv_michel_buze.docx" target="_blank" class="btn btn-secondary">
+            <svg class="icon download-icon" viewBox="0 0 24 24">
+                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/>
+                <path class="arrow" d="M12 15l-4-4h3V9h2v2h3l-4 4z"/>
+            </svg>
+            <span class="btn-text">Télécharger (.docx)</span>
+        </a>
+
+        <a href="http://buze.michel.chez.com/cv_michel_buze.pdf" target="_blank" class="btn btn-tertiary">
+            <svg class="icon download-icon" viewBox="0 0 24 24">
+                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/>
+                <path class="arrow" d="M12 15l-4-4h3V9h2v2h3l-4 4z"/>
+            </svg>
+            <span class="btn-text">Télécharger (.pdf)</span>
+        </a>
+    </div>
+
+    <script>
+        // Fonction globale pour générer et ouvrir les liens Copilot
+        function copilot(techno) {
+            //const cvUrl = 'http://buze.michel.chez.com/cv_michel_buze.html';
+			const cvUrl = 'http://buze.michel.chez.com/cv_michel_buze.pdf';
+            const prompt = `Présentes moi simplement en 2 phrases ${techno} et en une phrase dans quel contexte il figure sur ${cvUrl}`;
+            const encodedPrompt = encodeURIComponent(prompt);
+            //const copilotUrl = `https://copilot.microsoft.com?q=${encodedPrompt}&qs=SYC&showconv=1&sendquery=1&FORM=ASCHT2&sp=11&ghc=1&lq=0`;
+			const copilotUrl = `https://claude.ai/new?q=${encodedPrompt}`;
+            
+            window.open(copilotUrl, '_blank');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleButton = document.getElementById('theme-toggle');
+            const sunIcon = document.getElementById('sun-icon');
+            const moonIcon = document.getElementById('moon-icon');
+
+            // Fonction pour appliquer un thème
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    document.body.setAttribute('data-theme', 'dark');
+                    sunIcon.style.display = 'none';
+                    moonIcon.style.display = 'block';
+                } else {
+                    document.body.removeAttribute('data-theme');
+                    sunIcon.style.display = 'block';
+                    moonIcon.style.display = 'none';
+                }
+            };
+
+            // Appliquer le thème sauvegardé au chargement de la page
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            applyTheme(savedTheme);
+
+            // Gérer le clic sur le bouton
+            themeToggleButton.addEventListener('click', () => {
+                const currentTheme = document.body.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                localStorage.setItem('theme', newTheme);
+                applyTheme(newTheme);
+            });
+
+            // Gérer l'effet RIPPLE sur les boutons
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function (e) {
+                    if (e.metaKey || e.ctrlKey || e.button === 1) {
+                        return;
+                    }
+                    
+                    const rect = button.getBoundingClientRect();
+                    const ripple = document.createElement('span');
+                    const size = Math.max(rect.width, rect.height);
+                    
+                    ripple.style.width = ripple.style.height = `${size}px`;
+                    ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+                    ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+                    ripple.classList.add('ripple');
+                    
+                    const existingRipple = button.querySelector('.ripple');
+                    if(existingRipple) {
+                        existingRipple.remove();
+                    }
+                    
+                    button.appendChild(ripple);
+
+                    ripple.addEventListener('animationend', () => {
+                        if (ripple.parentElement) {
+                            ripple.remove();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+	
+</body>
+</html>
