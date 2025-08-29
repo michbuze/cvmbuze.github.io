@@ -12,7 +12,7 @@
             --main-color: #0d47a1;
             --secondary-color: #f5f5ff;
             --text-color: #333;
-            --light-text-color: #666;
+            --light-text-color: #444;
             --icon-contact-color: #555;
             --bubble-bg-color: #cfd8dc;
             --border-color: #b0bec5;
@@ -93,7 +93,7 @@
         .section { margin-bottom: 12px; }
         .section-title {
             font-size: 15px; font-weight: 700; color: var(--main-color); border-bottom: 2px solid var(--main-color);
-            padding-bottom:2px; margin-bottom: 12px; display: flex; align-items: center; text-transform: uppercase;
+            margin-top:-6px; padding-bottom:2px; margin-bottom: 11px; display: flex; align-items: center; text-transform: uppercase;
             transition: color 0.3s, border-color 0.3s;
         }
         .section-title .icon { width: 18px; height: 18px; margin-right: 8px; fill: var(--main-color); transition: fill 0.3s; }
@@ -130,7 +130,7 @@
         .job-company-date, .duration, .mission-date, .job-env, .job-env-inline { color: var(--light-text-color); transition: color 0.3s; }
         .date-container { width: 120px; text-align: left; padding-left: 10px; flex-shrink: 0; }
         .job-company-date { font-size: 11px; white-space: nowrap; }
-        .duration { font-size: 10.5px; color: #999; }
+        .duration { font-size: 10.7px; color: #999; }
         
         .mission-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px; flex-wrap: nowrap; }
         .mission-title { font-weight: 700; font-size: 13px; transition: color 0.2s; flex-grow: 1; }
@@ -144,7 +144,7 @@
         .job-description li { margin-bottom: 8px; }
         
         .mission-details, .mission-full-details { font-size: 12.5px; padding-left: 5px; }
-        .job-env { font-size: 12px; line-height: 1.4; margin-top: 4px; border-left: 2px solid var(--timeline-color); transition: border-color 0.3s; }
+        .job-env { font-size: 12px; line-height: 1.4; margin-top: 4px; border-left: 2px solid var(--timeline-color); padding-left: 5px; transition: border-color 0.3s; }
         .job-env-inline { font-size: 12px; padding-left: 4px; }
         
         .skills-category { border: 1px solid var(--border-color); border-radius: 5px; padding: 6px 8px; margin-bottom: 4px; transition: border-color 0.3s; }
@@ -156,9 +156,10 @@
             transition: background-color 0.2s, color 0.2s;
         }
         .skill-bubble:hover { background-color: var(--main-color); color: white; }
+        .skill-bubble:hover .detail { color: #f0f0f0; }
 		
         .detail {
-            font-size: 0.9em;
+            font-size: 1.0em;
             font-weight: 400;
             color: var(--light-text-color);
         }
@@ -206,15 +207,14 @@
             cursor: pointer;
         }
         .company-name-main a:hover {
-            text-decoration: underline;
+            text-decoration: none;
         }
-        .job-env a, .job-env-inline a, .internship-title a, .company-name a {
+        .job-env a, .job-env-inline a, .internship-title a, .company-name a, .mission-details a {
             color: inherit;
             text-decoration: none;
-            border-bottom: 1px dotted;
             transition: color 0.2s, border-bottom-color 0.2s;
         }
-        .job-env a:hover, .job-env-inline a:hover, .internship-title a:hover, .company-name a:hover {
+        .job-env a:hover, .job-env-inline a:hover, .internship-title a:hover, .company-name a:hover, .mission-details a:hover {
             color: var(--main-color);
             border-bottom-color: var(--main-color);
         }
@@ -280,7 +280,8 @@
                             </li>
                             <li>
                                 <div class="mission-header">
-                                    <span class="mission-title">Conception/dév. outil d’attestation d'avions civils<span class="company-name">. Airbus Atlantic</span></span>
+                                    <span class="mission-title">Conception/dév. outil d’attestation d'avions civils<span class="company-name">. 
+									<a href="https://www.airbus.com/fr/products-services/commercial-aircraft/airframes/airbus-atlantic" target="_blank">Airbus Atlantic</a></span></span>
                                     <div class="date-container"><span class="mission-date">2024 - 2025 <span class="duration">(1 an)</span></span></div>
                                 </div>
                                 <div class="job-env"><a href="javascript:copilot('VBA')">VBA</a>, <a href="javascript:copilot('Excel')">Excel</a>, <a href="javascript:copilot('Google Workspace')">Google Workspace</a>, <a href="javascript:copilot('API SAP')">API SAP</a>, <a href="javascript:copilot('PLM Windchill')">PLM Windchill</a>.</div>
@@ -341,7 +342,13 @@
                                     <span class="mission-title">Codage de tests unitaires et d'intégration de logiciels embarqués</span>
                                     <div class="date-container"><span class="mission-date">2005 - 2009 <span class="duration">(4 ans)</span></span></div>
                                 </div>
-                                <div class="mission-details">Secteur industriel : Dassault, Turboméca, Sodern, Messier-Bugatti, Alstom; médical : Airox</div>
+                                <div class="mission-details">Secteur industriel : 
+								<a href="https://www.dassault-aviation.com/fr/groupe/nous-connaitre/" target="_blank">Dassault</a>, 
+								<a href="https://www.safran-group.com/fr/societes/safran-helicopter-engines" target="_blank">Turboméca</a>, 
+								<a href="https://sodern.com/fr/a-propos/" target="_blank">Sodern</a>, 
+								<a href="https://www.safran-group.com/fr/societes/safran-landing-systems" target="_blank">Messier-Bugatti</a>, 
+								<a href="https://www.alstom.com/fr/groupe#qui-sommes-nous" target="_blank">Alstom</a>; 
+								médical : <a href="https://remma.fr/fr/brand/airox" target="_blank">Airox</a></div>
                                 <div class="job-env"><a href="javascript:copilot('RTRT (IBM Rational Test RealTime)')">RTRT (IBM Rational Test RealTime)</a>. <a href="javascript:copilot('C')">C</a>, <a href="javascript:copilot('Ada')">Ada</a>. <a href="javascript:copilot('Bugzilla')">Bugzilla</a>, <a href="javascript:copilot('Mantis')">Mantis</a>, <a href="javascript:copilot('DO-178B')">DO-178B</a>.</div>
                             </li>
                              <li>
@@ -437,7 +444,7 @@
                 <ul class="contact-info">
                     <li><a href="mailto:michel.buze@gmail.com" target="_blank"><svg class="icon" viewBox="0 0 24 24"><g transform="scale(0.75) translate(4, 4)"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></g></svg><span>michel.buze@gmail.com</span></a></li>
                     <li><a href="tel:0625888109"><svg class="icon" viewBox="0 0 24 24"><g transform="scale(0.75) translate(4, 4)"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></g></svg><span>06 25 88 81 09</span></a></li>
-                    <li><a href="https://www.google.com/maps/dir/Rue René Coty,+33140+Villenave-d'Ornon/" target="_blank"><svg class="icon" viewBox="0 0 24 24"><g transform="scale(0.75) translate(4, 4)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></g></svg><span>Bordeaux (Villenave d'Ornon)</span></a></li>
+                    <li><a href="https://www.google.com/maps/dir/Rue René Coty,+3D33140+Villenave-d'Ornon/" target="_blank"><svg class="icon" viewBox="0 0 24 24"><g transform="scale(0.75) translate(4, 4)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></g></svg><span>Bordeaux (Villenave d'Ornon)</span></a></li>
                     <li><a href="https://linkedin.com/in/michel-buze" target="_blank"><svg class="icon" viewBox="0 0 24 24"><g transform="scale(0.75) translate(4, 4)"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-3.06v8.34h3.06v-4.57c0-1.18.25-2.32 1.7-2.32c1.45 0 1.48 1.34 1.48 2.41v4.48zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.39 9.94v-8.34H5.5v8.34z"></path></g></svg><span>linkedin.com/in/michel-buze</span></a></li>
                     <li><a href="https://tinyurl.com/cvmbuze" target="_blank"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1h-2v-2h2c.55 0 1-.45 1-1V7h1c.9 0 1.64-.59 1.9-1.39.54.63.9 1.41.9 2.39 0 2.21-1.44 4.1-3.44 4.83.33.47.54 1.06.54 1.67 0 .53-.13 1.02-.36 1.46z"/></svg><span>tinyurl.com/cvmbuze</span></a></li>
                 </ul>
